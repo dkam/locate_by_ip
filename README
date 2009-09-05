@@ -1,2 +1,28 @@
-Idea: http://blog.makezine.com/archive/2009/03/free_unlimited_ip_address_geolocati.html?CMP=OTC-0D6B48984890
-Data: http://ipinfodb.com/ip_database.php
+Locate By IP is a simple little Sinatra app. You put the IP address you want to locate in the URL and it returns the location via XML
+
+dkam@Omena ~/Development/ip_location (master) $ curl "http://localhost:4569/69.41.185.10"
+<?xml version="1.0" encoding="UTF-8"?>
+<ip-group-city>
+  <city>Dallas</city>
+  <country-code>US</country-code>
+  <country-name>United States</country-name>
+  <dstOffset>-5.0</dstOffset>
+  <gmtOffset>-6.0</gmtOffset>
+  <ip-start type="integer">1160359936</ip-start>
+  <latitude type="float">32.8019</latitude>
+  <longitude type="float">-96.7883</longitude>
+  <region-code>48</region-code>
+  <region-name>Texas</region-name>
+  <zipcode>75204</zipcode>
+</ip-group-city>
+
+
+Grab the data from here: http://ipinfodb.com/ip_database.php
+You're after the "Complete (City)" with one table.
+
+Load the data with:
+  mysql -u <user> -p <databasename> < ipinfodb_one_table_full.sql
+
+
+I got the idea for this from this site: 
+ http://blog.makezine.com/archive/2009/03/free_unlimited_ip_address_geolocati.html?CMP=OTC-0D6B48984890

@@ -1,0 +1,5 @@
+locate:
+  adapter: mysql
+  database: database
+  username: user 
+  password: pass

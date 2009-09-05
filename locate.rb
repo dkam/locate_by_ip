@@ -1,15 +1,18 @@
 require 'rubygems'
 require 'sinatra'
 require 'activerecord'
+require "yaml"
 
-ActiveRecord::Base.establish_connection(
-   :adapter => :mysql,
-   :database => "ip_location",
-   :username => "locate",
-   :password => "password",
-   :host => "localhost",
-   :pool => 20,
-   :reconnect => true
+config = YAML.load_file("database.yml")
+env = "locate"
+ActiveRecord::Base.establish_connection(:adapter => "mysql", 
+  :host => config["host"], 
+  :database => config["database"],
+  :username => config["username"],
+  :password => config["password"],
+  :socket => config["socket"],
+  :wait_timeout => 20,
+  :reconnect => true
 )
 
 class IpGroupCity < ActiveRecord::Base
